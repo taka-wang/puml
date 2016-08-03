@@ -11,7 +11,6 @@ node modbusd {
 	[cJSON]
 	[uthash]
 	[czmq]
-	
 }
 
 node c-modbus-slave{
@@ -21,5 +20,7 @@ node c-modbus-slave{
 left to right direction
 [zmq3] <--> [czmq]: ZMQ
 [libmodbus:master] <--> [libmodbus:slave]: TCP
+
+caption @taka-wang
 
 @enduml

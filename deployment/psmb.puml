@@ -33,4 +33,6 @@ node c-modbus-slave{
 [zmq3*] <--> [czmq]: ZMQ
 [libmodbus:slave]<-->[libmodbus:master]  : TCP
 
+caption @taka-wang
+
 @enduml
