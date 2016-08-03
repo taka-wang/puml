@@ -1,0 +1,22 @@
+@startuml
+
+set namespaceSeparator /
+
+class psmb/mem-writer/writerTaskDataStore {
+    ~m map[string]string
+    +Add(tid string, cmd string)
+    +Delete(tid string)
+    +Get(tid string) (string, bool)
+}
+
+interface psmb/IWriterTaskDataStore {
+    +Add(tid string, cmd string)
+    +Delete(tid string)
+    +Get(tid string) (string, bool)
+}
+
+"psmb/mem-writer/writerTaskDataStore" .|> "psmb/IWriterTaskDataStore"
+
+hide interface fields
+
+@enduml

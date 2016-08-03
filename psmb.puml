@@ -1,0 +1,115 @@
+@startuml
+
+set namespaceSeparator /
+
+
+class psmb/redis-writer/writerTaskDataStore {
+    +Add(tid string, cmd string)
+    +Delete(tid string)
+    +Get(tid string) (string, bool)
+    ~closeRedis()
+    ~connectRedis() error
+}
+
+class psmb/mem-writer/writerTaskDataStore {
+    ~m map[string]string
+    +Add(tid string, cmd string)
+    +Delete(tid string)
+    +Get(tid string) (string, bool)
+}
+
+class psmb/mem-reader/readerTaskDataStore {
+    ~idMap map[string]psmb.ReaderTask
+    ~idName map[string]string
+    ~nameID map[string]string
+    ~nameMap map[string]psmb.ReaderTask
+    +Add(name string, tid string, cmd string, req interface{})
+    +DeleteAll()
+    +DeleteTaskByID(tid string)
+    +DeleteTaskByName(name string)
+    +GetAll() interface{}
+    +GetTaskByID(tid string) (interface{}, bool)
+    +GetTaskByName(name string) (interface{}, bool)
+    +UpdateAllTogglesByName(toggle bool)
+    +UpdateIntervalByName(name string, interval uint64) error
+    +UpdateToggleByName(name string, toggle bool) error
+}
+
+class psmb/redis-history/dataStore {
+    +Add(name string, data interface{}) error
+    +Get(name string, limit int) (map[string]string, error)
+    +GetAll(name string) (map[string]string, error)
+    +GetLatest(name string) (string, error)
+    ~closeRedis()
+    ~connectRedis() error
+}
+
+class psmb/mgo-history/dataStore {
+    +Add(name string, data interface{}) error
+    +Get(name string, limit int) (map[string]string, error)
+    +GetAll(name string) (map[string]string, error)
+    +GetLatest(name string) (string, error)
+    ~openSession() (*mgo.Session, error)
+    ~closeSession(session *mgo.Session)
+    ~marshal(r interface{}) (string, error)
+}
+
+class psmb/tcp/Service {
+    +HandleRequest(cmd string, r interface{}) error
+    +HandleResponse(cmd string, r interface{}) error
+    +ParseRequest(msg []string) (interface{}, error)
+    +ParseResponse(msg []string) (interface{}, error)
+    +Start()
+    +Stop()
+    +Task(socket *zmq.Socket, req interface{})
+    ~initZMQPub(toServiceEndpoint, toModbusdEndpoint string)
+    ~initZMQSub(fromServiceEndpoint, fromModbusdEndpoint string)
+    ~initZMQPoller()
+    ~naiveResponder(cmd string, resp interface{}) error
+}
+
+interface psmb/IHistoryDataStore {
+    +Add(name string, data interface{}) error
+    +Get(name string, limit int) (map[string]string, error)
+    +GetAll(name string) (map[string]string, error)
+    +GetLatest(name string) (string, error)
+}
+
+interface psmb/IReaderTaskDataStore {
+    +Add(name string, tid string, cmd string, req interface{})
+    +DeleteAll()
+    +DeleteTaskByID(tid string)
+    +DeleteTaskByName(name string)
+    +GetAll() interface{}
+    +GetTaskByID(tid string) (interface{}, bool)
+    +GetTaskByName(name string) (interface{}, bool)
+    +UpdateAllTogglesByName(toggle bool)
+    +UpdateIntervalByName(name string, interval uint64) error
+    +UpdateToggleByName(name string, toggle bool) error
+}
+
+interface psmb/IWriterTaskDataStore {
+    +Add(tid string, cmd string)
+    +Delete(tid string)
+    +Get(tid string) (string, bool)
+}
+
+interface psmb/IProactiveService {
+    +HandleRequest(cmd string, r interface{}) error
+    +HandleResponse(cmd string, r interface{}) error
+    +ParseRequest(msg []string) (interface{}, error)
+    +ParseResponse(msg []string) (interface{}, error)
+    +Start()
+    +Stop()
+}
+
+"psmb/tcp/Service" .|> "psmb/IProactiveService"
+"psmb/redis-history/dataStore" .|> "psmb/IHistoryDataStore"
+"psmb/mgo-history/dataStore" .|> "psmb/IHistoryDataStore"
+"psmb/mem-reader/readerTaskDataStore" .|> "psmb/IReaderTaskDataStore"
+"psmb/mem-writer/writerTaskDataStore" .|> "psmb/IWriterTaskDataStore"
+"psmb/redis-writer/writerTaskDataStore" .|> "psmb/IWriterTaskDataStore"
+
+hide interface fields
+
+@enduml

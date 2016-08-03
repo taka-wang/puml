@@ -1,0 +1,27 @@
+@startuml
+
+set namespaceSeparator /
+
+class psmb/mgo-history/dataStore {
+    +Add(name string, data interface{}) error
+    +Get(name string, limit int) (map[string]string, error)
+    +GetAll(name string) (map[string]string, error)
+    +GetLatest(name string) (string, error)
+    ~openSession() (*mgo.Session, error)
+    ~closeSession(session *mgo.Session)
+    ~marshal(r interface{}) (string, error)
+}
+
+interface psmb/IHistoryDataStore {
+    +Add(name string, data interface{}) error
+    +Get(name string, limit int) (map[string]string, error)
+    +GetAll(name string) (map[string]string, error)
+    +GetLatest(name string) (string, error)
+}
+
+
+"psmb/mgo-history/dataStore" .|> "psmb/IHistoryDataStore"
+
+hide interface fields
+
+@enduml
