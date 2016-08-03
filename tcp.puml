@@ -1,0 +1,32 @@
+@startuml
+
+set namespaceSeparator /
+
+class psmb/tcp/Service {
+    +HandleRequest(cmd string, r interface{}) error
+    +HandleResponse(cmd string, r interface{}) error
+    +ParseRequest(msg []string) (interface{}, error)
+    +ParseResponse(msg []string) (interface{}, error)
+    +Start()
+    +Stop()
+    +Task(socket *zmq.Socket, req interface{})
+    ~initZMQPub(toServiceEndpoint, toModbusdEndpoint string)
+    ~initZMQSub(fromServiceEndpoint, fromModbusdEndpoint string)
+    ~initZMQPoller()
+    ~naiveResponder(cmd string, resp interface{}) error
+}
+
+interface psmb/IProactiveService {
+    +HandleRequest(cmd string, r interface{}) error
+    +HandleResponse(cmd string, r interface{}) error
+    +ParseRequest(msg []string) (interface{}, error)
+    +ParseResponse(msg []string) (interface{}, error)
+    +Start()
+    +Stop()
+}
+
+"psmb/tcp/Service" .|> "psmb/IProactiveService"
+
+hide interface fields
+
+@enduml
