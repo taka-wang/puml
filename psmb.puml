@@ -12,17 +12,12 @@ class psmb/redis-writer/writerTaskDataStore {
 }
 
 class psmb/mem-writer/writerTaskDataStore {
-    ~m map[string]string
     +Add(tid string, cmd string)
     +Delete(tid string)
     +Get(tid string) (string, bool)
 }
 
 class psmb/mem-reader/readerTaskDataStore {
-    ~idMap map[string]psmb.ReaderTask
-    ~idName map[string]string
-    ~nameID map[string]string
-    ~nameMap map[string]psmb.ReaderTask
     +Add(name string, tid string, cmd string, req interface{})
     +DeleteAll()
     +DeleteTaskByID(tid string)

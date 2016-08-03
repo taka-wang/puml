@@ -3,7 +3,6 @@
 set namespaceSeparator /
 
 class psmb/mem-writer/writerTaskDataStore {
-    ~m map[string]string
     +Add(tid string, cmd string)
     +Delete(tid string)
     +Get(tid string) (string, bool)
