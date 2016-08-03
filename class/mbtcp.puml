@@ -1,6 +1,7 @@
 @startuml
 
 set namespaceSeparator /
+scale 1920 width
 
 class psmb/tcp/Service {
     +HandleRequest(cmd string, r interface{}) error
