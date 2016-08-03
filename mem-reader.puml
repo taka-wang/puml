@@ -2,19 +2,6 @@
 
 set namespaceSeparator /
 
-interface psmb/IReaderTaskDataStore {
-    +Add(name string, tid string, cmd string, req interface{})
-    +DeleteAll()
-    +DeleteTaskByID(tid string)
-    +DeleteTaskByName(name string)
-    +GetAll() interface{}
-    +GetTaskByID(tid string) (interface{}, bool)
-    +GetTaskByName(name string) (interface{}, bool)
-    +UpdateAllTogglesByName(toggle bool)
-    +UpdateIntervalByName(name string, interval uint64) error
-    +UpdateToggleByName(name string, toggle bool) error
-}
-
 class psmb/mem-reader/readerTaskDataStore {
     ~idMap map[string]psmb.ReaderTask
     ~idName map[string]string
@@ -32,9 +19,20 @@ class psmb/mem-reader/readerTaskDataStore {
     +UpdateToggleByName(name string, toggle bool) error
 }
 
+interface psmb/IReaderTaskDataStore {
+    +Add(name string, tid string, cmd string, req interface{})
+    +DeleteAll()
+    +DeleteTaskByID(tid string)
+    +DeleteTaskByName(name string)
+    +GetAll() interface{}
+    +GetTaskByID(tid string) (interface{}, bool)
+    +GetTaskByName(name string) (interface{}, bool)
+    +UpdateAllTogglesByName(toggle bool)
+    +UpdateIntervalByName(name string, interval uint64) error
+    +UpdateToggleByName(name string, toggle bool) error
+}
 
-"psmb/mem-reader/readerTaskDataStore" .|> "psmb/IReaderTaskDataStore"
-
+"psmb/IReaderTaskDataStore" <|. "psmb/mem-reader/readerTaskDataStore"
 
 hide interface fields
 
