@@ -16,7 +16,7 @@ interface psmb/IWriterTaskDataStore {
     +Get(tid string) (string, bool)
 }
 
-"psmb/redis-writer/writerTaskDataStore" .|> "psmb/IWriterTaskDataStore"
+"psmb/IWriterTaskDataStore" <|. "psmb/redis-writer/writerTaskDataStore"
 
 hide interface fields
 

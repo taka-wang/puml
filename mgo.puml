@@ -19,8 +19,7 @@ interface psmb/IHistoryDataStore {
     +GetLatest(name string) (string, error)
 }
 
-
-"psmb/mgo-history/dataStore" .|> "psmb/IHistoryDataStore"
+"psmb/IHistoryDataStore" <|. "psmb/mgo-history/dataStore"
 
 hide interface fields
 

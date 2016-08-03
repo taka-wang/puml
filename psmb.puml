@@ -103,12 +103,13 @@ interface psmb/IProactiveService {
     +Stop()
 }
 
-"psmb/tcp/Service" .|> "psmb/IProactiveService"
-"psmb/redis-history/dataStore" .|> "psmb/IHistoryDataStore"
-"psmb/mgo-history/dataStore" .|> "psmb/IHistoryDataStore"
-"psmb/mem-reader/readerTaskDataStore" .|> "psmb/IReaderTaskDataStore"
-"psmb/mem-writer/writerTaskDataStore" .|> "psmb/IWriterTaskDataStore"
-"psmb/redis-writer/writerTaskDataStore" .|> "psmb/IWriterTaskDataStore"
+"psmb/IProactiveService" <|. "psmb/tcp/Service"
+"psmb/IHistoryDataStore" <|. "psmb/redis-history/dataStore"
+"psmb/IHistoryDataStore" <|. "psmb/mgo-history/dataStore"
+"psmb/IReaderTaskDataStore" <|. "psmb/mem-reader/readerTaskDataStore"
+"psmb/IWriterTaskDataStore" <|. "psmb/mem-writer/writerTaskDataStore"
+"psmb/IWriterTaskDataStore" <|. "psmb/redis-writer/writerTaskDataStore" 
+
 
 hide interface fields
 

@@ -25,7 +25,7 @@ interface psmb/IProactiveService {
     +Stop()
 }
 
-"psmb/tcp/Service" .|> "psmb/IProactiveService"
+"psmb/IProactiveService" <|. "psmb/tcp/Service"
 
 hide interface fields
 

@@ -46,7 +46,7 @@ interface psmb/cron/Scheduler {
 	+Stop()
 }
 
-"psmb/cron/scheduler" .|> "psmb/cron/Scheduler"
+"psmb/cron/Scheduler" <|. "psmb/cron/scheduler"
 
 hide interface fields
 
