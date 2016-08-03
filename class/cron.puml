@@ -3,23 +3,23 @@
 set namespaceSeparator /
 
 class psmb/cron/scheduler {
-	+Clear()
-	+Emergency() *Job
-	+Every(interval uint64) *Job
-	+EveryWithName(interval uint64, name string) *Job
-	+IsRunning() bool
-	+Location(*time.Location)
-	+NextRun() (*Job, time.Time)
-	+Remove(*Job) bool
-	+UpdateIntervalWithName(name string, interval uint64) bool
-	+RemoveWithName(string) bool
-	+PauseWithName(string) bool
-	+PauseAll()
-	+ResumeWithName(string) bool
-	+ResumeAll()
-	+RunPending()
-	+Start()
-	+Stop()
+    +Clear()
+    +Emergency() *Job
+    +Every(interval uint64) *Job
+    +EveryWithName(interval uint64, name string) *Job
+    +IsRunning() bool
+    +Location(*time.Location)
+    +NextRun() (*Job, time.Time)
+    +Remove(*Job) bool
+    +UpdateIntervalWithName(name string, interval uint64) bool
+    +RemoveWithName(string) bool
+    +PauseWithName(string) bool
+    +PauseAll()
+    +ResumeWithName(string) bool
+    +ResumeAll()
+    +RunPending()
+    +Start()
+    +Stop()
     +Len() int
     +Swap(i, j int)
     +Less(i, j int) bool
@@ -27,23 +27,23 @@ class psmb/cron/scheduler {
 }
 
 interface psmb/cron/Scheduler {
-	+Clear()
-	+Emergency() *Job
-	+Every(interval uint64) *Job
-	+EveryWithName(interval uint64, name string) *Job
-	+IsRunning() bool
-	+Location(*time.Location)
-	+NextRun() (*Job, time.Time)
-	+Remove(*Job) bool
-	+UpdateIntervalWithName(name string, interval uint64) bool
-	+RemoveWithName(string) bool
-	+PauseWithName(string) bool
-	+PauseAll()
-	+ResumeWithName(string) bool
-	+ResumeAll()
-	+RunPending()
-	+Start()
-	+Stop()
+    +Clear()
+    +Emergency() *Job
+    +Every(interval uint64) *Job
+    +EveryWithName(interval uint64, name string) *Job
+    +IsRunning() bool
+    +Location(*time.Location)
+    +NextRun() (*Job, time.Time)
+    +Remove(*Job) bool
+    +UpdateIntervalWithName(name string, interval uint64) bool
+    +RemoveWithName(string) bool
+    +PauseWithName(string) bool
+    +PauseAll()
+    +ResumeWithName(string) bool
+    +ResumeAll()
+    +RunPending()
+    +Start()
+    +Stop()
 }
 
 "psmb/cron/Scheduler" <|. "psmb/cron/scheduler"
