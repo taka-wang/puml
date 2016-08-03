@@ -18,6 +18,8 @@ interface psmb/IWriterTaskDataStore {
 
 "psmb/IWriterTaskDataStore" <|. "psmb/redis-writer/writerTaskDataStore"
 
+caption @taka-wang
+
 hide interface fields
 
 @enduml

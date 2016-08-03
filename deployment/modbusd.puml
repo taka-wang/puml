@@ -1,0 +1,25 @@
+@startuml
+
+node dummy-psmbtcp{
+	[psmb]
+	[sugar]
+	[zmq3]
+}
+
+node modbusd {
+	[libmodbus:master]
+	[cJSON]
+	[uthash]
+	[czmq]
+	
+}
+
+node c-modbus-slave{
+	[libmodbus:slave]
+}
+
+left to right direction
+[zmq3] <--> [czmq]: ZMQ
+[libmodbus:master] <--> [libmodbus:slave]: TCP
+
+@enduml

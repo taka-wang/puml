@@ -21,6 +21,8 @@ interface psmb/IHistoryDataStore {
 
 "psmb/IHistoryDataStore" <|. "psmb/mgo-history/dataStore"
 
+caption @taka-wang
+
 hide interface fields
 
 @enduml

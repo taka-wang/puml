@@ -16,6 +16,8 @@ interface psmb/IWriterTaskDataStore {
 
 "psmb/IWriterTaskDataStore" <|. "psmb/mem-writer/writerTaskDataStore"
 
+caption @taka-wang
+
 hide interface fields
 
 @enduml

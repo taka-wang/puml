@@ -48,6 +48,8 @@ interface psmb/cron/Scheduler {
 
 "psmb/cron/Scheduler" <|. "psmb/cron/scheduler"
 
+caption @taka-wang
+
 hide interface fields
 
 @enduml

@@ -30,6 +30,8 @@ interface psmb/IReaderTaskDataStore {
 
 "psmb/IReaderTaskDataStore" <|. "psmb/mem-reader/readerTaskDataStore"
 
+caption @taka-wang
+
 hide interface fields
 
 @enduml

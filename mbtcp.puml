@@ -27,6 +27,8 @@ interface psmb/IProactiveService {
 
 "psmb/IProactiveService" <|. "psmb/tcp/Service"
 
+caption @taka-wang
+
 hide interface fields
 
 @enduml
