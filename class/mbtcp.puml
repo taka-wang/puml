@@ -2,6 +2,8 @@
 
 set namespaceSeparator /
 
+skinparam classAttributeIconSize 0
+
 class psmb/tcp/Service {
     +HandleRequest(cmd string, r interface{}) error
     +HandleResponse(cmd string, r interface{}) error

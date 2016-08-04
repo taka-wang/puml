@@ -2,6 +2,8 @@
 
 set namespaceSeparator /
 
+skinparam classAttributeIconSize 0
+
 class psmb/mem-writer/writerTaskDataStore {
     +Add(tid string, cmd string)
     +Delete(tid string)

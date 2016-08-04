@@ -2,6 +2,8 @@
 
 set namespaceSeparator /
 
+skinparam classAttributeIconSize 0
+
 class psmb/cron/scheduler {
     +Clear()
     +Emergency() *Job
