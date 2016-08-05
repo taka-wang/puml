@@ -76,8 +76,9 @@ class psmb/tcp/Service {
     +Start()
     +Stop()
     +Task(socket *zmq.Socket, req interface{})
-    ~initZMQPub(toServiceEndpoint, toModbusdEndpoint string)
-    ~initZMQSub(fromServiceEndpoint, fromModbusdEndpoint string)
+    ~addToHistory(taskName string, data interface{})
+    ~initZMQPub()
+    ~initZMQSub()
     ~initZMQPoller()
     ~naiveResponder(cmd string, resp interface{}) error
 }
