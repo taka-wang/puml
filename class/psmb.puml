@@ -14,7 +14,7 @@ skinparam classAttributeIconSize 0
 "psmb/IHistoryDataStore" <|. "psmb/redis-history/dataStore"
 "psmb/IHistoryDataStore" <|. "psmb/mgo-history/dataStore"
 "psmb/IProactiveService" <|. "psmb/tcp/Service"
-"psmb/IFilterDataStore" <|. "psmb/mem-filter/filterDataStore"
+"psmb/IFilterDataStore" <|. "psmb/mem-filter/dataStore"
 
 ' composition
 "psmb/tcp/Service"  *-->  "psmb/mem-writer/writerTaskDataStore"
@@ -22,7 +22,7 @@ skinparam classAttributeIconSize 0
 "psmb/tcp/Service"  *-->  "psmb/redis-history/dataStore"
 "psmb/tcp/Service"  *-->  "psmb/mgo-history/dataStore"
 "psmb/tcp/Service"  *-->  "psmb/mem-reader/readerTaskDataStore"
-"psmb/tcp/Service"  *-->  "psmb/mem-filter/filterDataStore"
+"psmb/tcp/Service"  *-->  "psmb/mem-filter/dataStore"
 
 class psmb/redis-writer/writerTaskDataStore {
     +Add(tid string, cmd string)
@@ -84,7 +84,7 @@ class psmb/tcp/Service {
     ~naiveResponder(cmd string, resp interface{}) error
 }
 
-class psmb/mem-filter/filterDataStore {
+class psmb/mem-filter/dataStore {
 	+Add(name string, req interface{})
 	+Get(name string) (interface{}, bool)
 	+GetAll(name string) interface{}

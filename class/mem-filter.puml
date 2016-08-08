@@ -4,7 +4,7 @@ set namespaceSeparator /
 
 skinparam classAttributeIconSize 0
 
-class psmb/mem-filter/filterDataStore {
+class psmb/mem-filter/dataStore {
 	+Add(name string, req interface{})
 	+Get(name string) (interface{}, bool)
 	+GetAll(name string) interface{}
@@ -24,7 +24,7 @@ interface psmb/IFilterDataStore {
 	+UpdateAllToggles(toggle bool)
 }
 
-"psmb/IFilterDataStore" <|. "psmb/mem-filter/filterDataStore"
+"psmb/IFilterDataStore" <|. "psmb/mem-filter/dataStore"
 
 caption @taka-wang
 
