@@ -9,22 +9,22 @@ skinparam classAttributeIconSize 0
 
 ' implemented
 "psmb/IReaderTaskDataStore" <|. "psmb/mem-reader/readerTaskDataStore"
-"psmb/IWriterTaskDataStore" <|. "psmb/mem-writer/writerTaskDataStore"
-"psmb/IWriterTaskDataStore" <|. "psmb/redis-writer/writerTaskDataStore"
+"psmb/IWriterTaskDataStore" <|. "psmb/mem-writer/dataStore"
+"psmb/IWriterTaskDataStore" <|. "psmb/redis-writer/dataStore"
 "psmb/IHistoryDataStore" <|. "psmb/redis-history/dataStore"
 "psmb/IHistoryDataStore" <|. "psmb/mgo-history/dataStore"
 "psmb/IProactiveService" <|. "psmb/tcp/Service"
 "psmb/IFilterDataStore" <|. "psmb/mem-filter/dataStore"
 
 ' composition
-"psmb/tcp/Service"  *-->  "psmb/mem-writer/writerTaskDataStore"
-"psmb/tcp/Service"  *-->  "psmb/redis-writer/writerTaskDataStore"
+"psmb/tcp/Service"  *-->  "psmb/mem-writer/dataStore"
+"psmb/tcp/Service"  *-->  "psmb/redis-writer/dataStore"
 "psmb/tcp/Service"  *-->  "psmb/redis-history/dataStore"
 "psmb/tcp/Service"  *-->  "psmb/mgo-history/dataStore"
 "psmb/tcp/Service"  *-->  "psmb/mem-reader/readerTaskDataStore"
 "psmb/tcp/Service"  *-->  "psmb/mem-filter/dataStore"
 
-class psmb/redis-writer/writerTaskDataStore {
+class psmb/redis-writer/dataStore {
     +Add(tid string, cmd string)
     +Delete(tid string)
     +Get(tid string) (string, bool)
@@ -32,7 +32,7 @@ class psmb/redis-writer/writerTaskDataStore {
     ~connectRedis() error
 }
 
-class psmb/mem-writer/writerTaskDataStore {
+class psmb/mem-writer/dataStore {
     +Add(tid string, cmd string)
     +Delete(tid string)
     +Get(tid string) (string, bool)
