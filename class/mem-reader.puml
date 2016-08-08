@@ -4,7 +4,7 @@ set namespaceSeparator /
 
 skinparam classAttributeIconSize 0
 
-class psmb/mem-reader/readerTaskDataStore {
+class psmb/mem-reader/dataStore {
     +Add(name string, tid string, cmd string, req interface{})
     +DeleteAll()
     +DeleteTaskByID(tid string)
@@ -30,7 +30,7 @@ interface psmb/IReaderTaskDataStore {
     +UpdateToggleByName(name string, toggle bool) error
 }
 
-"psmb/IReaderTaskDataStore" <|. "psmb/mem-reader/readerTaskDataStore"
+"psmb/IReaderTaskDataStore" <|. "psmb/mem-reader/dataStore"
 
 caption @taka-wang
 

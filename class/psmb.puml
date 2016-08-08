@@ -8,7 +8,7 @@ title Proactive service
 skinparam classAttributeIconSize 0
 
 ' implemented
-"psmb/IReaderTaskDataStore" <|. "psmb/mem-reader/readerTaskDataStore"
+"psmb/IReaderTaskDataStore" <|. "psmb/mem-reader/dataStore"
 "psmb/IWriterTaskDataStore" <|. "psmb/mem-writer/dataStore"
 "psmb/IWriterTaskDataStore" <|. "psmb/redis-writer/dataStore"
 "psmb/IHistoryDataStore" <|. "psmb/redis-history/dataStore"
@@ -21,7 +21,7 @@ skinparam classAttributeIconSize 0
 "psmb/tcp/Service"  *-->  "psmb/redis-writer/dataStore"
 "psmb/tcp/Service"  *-->  "psmb/redis-history/dataStore"
 "psmb/tcp/Service"  *-->  "psmb/mgo-history/dataStore"
-"psmb/tcp/Service"  *-->  "psmb/mem-reader/readerTaskDataStore"
+"psmb/tcp/Service"  *-->  "psmb/mem-reader/dataStore"
 "psmb/tcp/Service"  *-->  "psmb/mem-filter/dataStore"
 
 class psmb/redis-writer/dataStore {
@@ -38,7 +38,7 @@ class psmb/mem-writer/dataStore {
     +Get(tid string) (string, bool)
 }
 
-class psmb/mem-reader/readerTaskDataStore {
+class psmb/mem-reader/dataStore {
     +Add(name string, tid string, cmd string, req interface{})
     +DeleteAll()
     +DeleteTaskByID(tid string)
