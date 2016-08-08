@@ -4,7 +4,7 @@ set namespaceSeparator /
 
 skinparam classAttributeIconSize 0
 
-class psmb/redis-writer/writerTaskDataStore {
+class psmb/redis-writer/dataStore {
     +Add(tid string, cmd string)
     +Delete(tid string)
     +Get(tid string) (string, bool)
@@ -18,7 +18,7 @@ interface psmb/IWriterTaskDataStore {
     +Get(tid string) (string, bool)
 }
 
-"psmb/IWriterTaskDataStore" <|. "psmb/redis-writer/writerTaskDataStore"
+"psmb/IWriterTaskDataStore" <|. "psmb/redis-writer/dataStore"
 
 caption @taka-wang
 
