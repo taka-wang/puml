@@ -10,6 +10,8 @@ node psmbtcp-srv{
     [zmq3*]
 	[x-history]
     [x-writer]
+    [x-filter]
+    [x-conf]
     [mem-reader]
     [psmb*]
     [psmbtcp]
