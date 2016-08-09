@@ -8,21 +8,24 @@ title Proactive service
 skinparam classAttributeIconSize 0
 
 ' implemented
-"psmb/IReaderTaskDataStore" <|. "psmb/mem-reader/dataStore"
-"psmb/IWriterTaskDataStore" <|. "psmb/mem-writer/dataStore"
-"psmb/IWriterTaskDataStore" <|. "psmb/redis-writer/dataStore"
-"psmb/IHistoryDataStore" <|. "psmb/redis-history/dataStore"
-"psmb/IHistoryDataStore" <|. "psmb/mgo-history/dataStore"
-"psmb/IProactiveService" <|. "psmb/tcp/Service"
-"psmb/IFilterDataStore" <|. "psmb/mem-filter/dataStore"
+"psmb/IReaderTaskDataStore" <|. "psmb/mem-reader/dataStore" : implemented
+"psmb/IWriterTaskDataStore" <|. "psmb/mem-writer/dataStore" : implemented
+"psmb/IWriterTaskDataStore" <|. "psmb/redis-writer/dataStore" : implemented
+"psmb/IHistoryDataStore" <|. "psmb/redis-history/dataStore" : implemented
+"psmb/IHistoryDataStore" <|. "psmb/mgo-history/dataStore" : implemented
+"psmb/IProactiveService" <|. "psmb/tcp/Service" : implemented
+"psmb/IFilterDataStore" <|. "psmb/mem-filter/dataStore" : implemented
+"psmb/IFilterDataStore" <|. "psmb/redis-filter/dataStore" : implemented
+"psmb/IConfig" <|. "psmb/viper-conf/vConf" : implemented
+"psmb/IConfig" <|. "psmb/mini-conf/mConf" : implemented
 
 ' composition
-"psmb/tcp/Service"  *-->  "psmb/mem-writer/dataStore"
-"psmb/tcp/Service"  *-->  "psmb/redis-writer/dataStore"
-"psmb/tcp/Service"  *-->  "psmb/redis-history/dataStore"
-"psmb/tcp/Service"  *-->  "psmb/mgo-history/dataStore"
-"psmb/tcp/Service"  *-->  "psmb/mem-reader/dataStore"
-"psmb/tcp/Service"  *-->  "psmb/mem-filter/dataStore"
+"psmb/tcp/Service"  *-->  "psmb/IReaderTaskDataStore" : composite
+"psmb/tcp/Service"  *-->  "psmb/IWriterTaskDataStore" : composite
+"psmb/tcp/Service"  *-->  "psmb/IHistoryDataStore" : composite
+"psmb/tcp/Service"  *-->  "psmb/IFilterDataStore" : composite
+"psmb/tcp/Service"  *-->  "psmb/IConfig" : composite
+
 
 class psmb/redis-writer/dataStore {
     +Add(tid string, cmd string)
@@ -94,6 +97,18 @@ class psmb/mem-filter/dataStore {
 	+UpdateAllToggles(toggle bool)
 }
 
+class psmb/redis-filter/dataStore {
+	+Add(name string, req interface{})
+	+Get(name string) (interface{}, bool)
+	+GetAll(name string) interface{}
+	+Delete(name string)
+	+DeleteAll()
+	+UpdateToggle(name string, toggle bool) error
+	+UpdateAllToggles(toggle bool)
+    ~closeRedis()
+    ~connectRedis() error
+}
+
 interface psmb/IHistoryDataStore {
     +Add(name string, data interface{}) error
     +Get(name string, limit int) (map[string]string, error)
@@ -137,6 +152,21 @@ interface psmb/IProactiveService {
     +ParseResponse(msg []string) (interface{}, error)
     +Start()
     +Stop()
+}
+
+interface psmb/IConfig {
+    ~setLogger()
+	~initConfig()
+}
+
+class psmb/viper-conf/vConf {
+    ~setLogger()
+	~initConfig()
+}
+
+class psmb/mini-conf/mConf {
+    ~setLogger()
+	~initConfig()
 }
 
 /'
