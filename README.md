@@ -13,6 +13,7 @@
 !includeurl https://raw.githubusercontent.com/taka-wang/puml/master/class/redis-writer.puml
 !includeurl https://raw.githubusercontent.com/taka-wang/puml/master/class/mbtcp.puml
 !includeurl https://raw.githubusercontent.com/taka-wang/puml/master/class/mem-filter.puml
+!includeurl https://raw.githubusercontent.com/taka-wang/puml/master/class/redis-filter.puml
 
 # deployment
 !includeurl https://raw.githubusercontent.com/taka-wang/puml/master/deployment/modbusd.puml
