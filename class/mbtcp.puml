@@ -12,7 +12,8 @@ class psmb/tcp/Service {
     +Start()
     +Stop()
     +Task(socket *zmq.Socket, req interface{})
-    ~addToHistory(taskName string, data interface{})
+    ~addToHistory(name string, data interface{})
+    ~applyFilter(name string, data interface{}) bool
     ~startZMQ()
     ~stopZMQ()
     ~naiveResponder(cmd string, resp interface{}) error
