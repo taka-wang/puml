@@ -18,7 +18,7 @@ class psmb/mem-reader/dataStore {
 }
 
 interface psmb/IReaderTaskDataStore {
-    +Add(name string, tid string, cmd string, req interface{})
+    +Add(name string, tid string, cmd string, req interface{}) error
     +DeleteAll()
     +DeleteTaskByID(tid string)
     +DeleteTaskByName(name string)
