@@ -18,6 +18,9 @@
 # deployment
 !includeurl https://raw.githubusercontent.com/taka-wang/puml/master/deployment/modbusd.puml
 !includeurl https://raw.githubusercontent.com/taka-wang/puml/master/deployment/psmb.puml
+!includeurl https://raw.githubusercontent.com/taka-wang/puml/master/deployment/d2u.puml
+!includeurl https://raw.githubusercontent.com/taka-wang/puml/master/deployment/u2d.puml
+
 ```
 
 ---
@@ -39,6 +42,8 @@
 # deployment
 ![uml](http://uml.cmwang.net:8000/plantuml/svg/5Sl13O0W343HLNG0wTrjAcs0I2c1DiRjnVD_VoyjLYVsKRTirkS9CF09gLZsooUFgCsuMOWgO7ZZyM1Bq5qg24xZ0SIzwYiBWIYjYSAVFm00)
 ![uml](http://uml.cmwang.net:8000/plantuml/svg/5Sh13O0W3030LNG0QVJfnraAD42aGA0DSNlrVRUcuh9wqfwNADB62T1ncf0agjL1tTKYLCIuoY1uupQn16ZA6HY7K0TFBTU7lmHji3M_NVln0W00)
+![uml](http://uml.cmwang.net:8000/plantuml/svg/5Sh13O0W3030LNG0QUBJRIeqOAI5b3R4xTNttNf9h9x8jIx5h8y3G766V5dnqmTfR68a5c9ZCBnncoWPkdC5nc6aaAZNzl2N8EqUVde1)
+![uml](http://uml.cmwang.net:8000/plantuml/svg/5Sh13O0W3030LNG0QUBJRIeqOAI5b3R4xTNttNf9h9x8jIx5h8y3G766V5dnqmTfR68a5c9ZCBnncoWPkdC5nc6aaAZNzl2NmFSKVde1)
 ```
 
 ---
