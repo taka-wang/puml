@@ -1,0 +1,28 @@
+@startuml
+
+node scheduler
+node modbusd
+node upstream
+node psmbtcp
+
+rectangle "worker pool" {
+    node worker1
+    node worker2
+    node worker3
+}
+
+left to right direction
+
+upstream <--> psmbtcp : zmq
+psmbtcp <--> worker1
+psmbtcp <--> worker2
+psmbtcp <--> worker3
+worker1 --> scheduler
+worker2 --> scheduler
+worker3 --> scheduler
+scheduler --> modbusd : zmq
+
+
+caption @taka-wang
+
+@enduml
