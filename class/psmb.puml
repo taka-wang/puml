@@ -171,7 +171,7 @@ note top of psmb/IReaderTaskDataStore : Reader datastore contracts
 note top of psmb/IHistoryDataStore : Historian datastore contracts
 '/
 
-'left to right direction
+left to right direction
 
 caption @taka-wang
 
