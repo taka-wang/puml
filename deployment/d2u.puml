@@ -1,6 +1,5 @@
 @startuml
 
-
 node upstream
 node psmbtcp
 rectangle "worker pool" {

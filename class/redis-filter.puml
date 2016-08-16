@@ -12,8 +12,6 @@ class psmb/redis-filter/dataStore {
 	+DeleteAll()
 	+UpdateToggle(name string, toggle bool) error
 	+UpdateAllToggles(toggle bool)
-    ~closeRedis()
-    ~connectRedis() error
 }
 
 interface psmb/IFilterDataStore {

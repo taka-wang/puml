@@ -8,8 +8,6 @@ class psmb/redis-writer/dataStore {
     +Add(tid string, cmd string)
     +Delete(tid string)
     +Get(tid string) (string, bool)
-    ~closeRedis()
-    ~connectRedis() error
 }
 
 interface psmb/IWriterTaskDataStore {

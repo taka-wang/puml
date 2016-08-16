@@ -31,8 +31,6 @@ class psmb/redis-writer/dataStore {
     +Add(tid string, cmd string)
     +Delete(tid string)
     +Get(tid string) (string, bool)
-    ~closeRedis()
-    ~connectRedis() error
 }
 
 class psmb/mem-writer/dataStore {
@@ -59,8 +57,6 @@ class psmb/redis-history/dataStore {
     +Get(name string, limit int) (map[string]string, error)
     +GetAll(name string) (map[string]string, error)
     +GetLatest(name string) (string, error)
-    ~closeRedis()
-    ~connectRedis() error
 }
 
 class psmb/mgo-history/dataStore {
@@ -106,8 +102,6 @@ class psmb/redis-filter/dataStore {
 	+DeleteAll()
 	+UpdateToggle(name string, toggle bool) error
 	+UpdateAllToggles(toggle bool)
-    ~closeRedis()
-    ~connectRedis() error
 }
 
 interface psmb/IHistoryDataStore {
@@ -177,7 +171,7 @@ note top of psmb/IReaderTaskDataStore : Reader datastore contracts
 note top of psmb/IHistoryDataStore : Historian datastore contracts
 '/
 
-left to right direction
+'left to right direction
 
 caption @taka-wang
 
