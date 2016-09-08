@@ -1,0 +1,31 @@
+@startuml
+
+node psmbtcp
+node modbusd
+node frontend
+
+rectangle "mb-web" {
+    node route
+
+    rectangle "worker pool" #LightBlue{
+        Usecase worker1 #FFF
+        Usecase worker2 #FFF
+        Usecase worker... #FFF
+    }
+}
+
+left to right direction
+
+frontend --> route : HTTP
+route --> worker1
+route --> worker2
+route --> worker...
+worker1 --> psmbtcp : zmq
+worker2 --> psmbtcp : zmq
+worker... --> psmbtcp: zmq
+psmbtcp --> modbusd : zmq
+
+
+caption @taka-wang
+
+@enduml
